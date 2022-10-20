@@ -1,8 +1,8 @@
 <?php
   include("function.php");
-   
+
   $conn = databaseConnect();
- 
+
   if(isset($_GET['message']))
   {
     echo $_GET['message'];
@@ -11,7 +11,7 @@
   }
   $sql = "SELECT * FROM arduino_data";
   $result = $conn->query($sql);
- 
+
   echo "<html>";
   echo "<head>";
   echo "<meta http-equiv='refresh' content='10'>";
@@ -35,7 +35,20 @@
     echo "</td>";
   }
   echo "</table>";
-   
+
   echo "<form action='dariBrowser.php' method=GET>";
   echo "<input type='hidden' name='aksi' value='hapus'><br>";
-  echo "<input typ
+  echo "<input type='submit' value='Hapus semua data'>";
+  echo "</form>";
+
+  echo "<br>Kirim data ke Arduino<br>";
+  echo "<form action='dariBrowser.php' method=GET>";
+  echo "Nama variabel:<br><input type='text' name='variabel'><br>";
+  echo "Nilai:<br><input type='text' name='nilai'><br>";
+  echo "<input type='submit' value='Kirim'>";
+  echo "</form>";
+  echo "</body>";
+  echo "</html>";
+
+  $conn->close();
+?> 
